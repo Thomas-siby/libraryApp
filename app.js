@@ -10,10 +10,14 @@ const nav =  [
         link :'/authors',name:'Authors'
     },
      {
+        link : "/admin",
+        name : "Add Book"
+    },
+    
+    {
         link : "/signup",
         name : "SignUp/Login"
     }
-    
     
 
 ];
@@ -22,6 +26,7 @@ const booksRouter = require('./src/routes/bookRoutes')(nav);
 const authorsRouter = require('./src/routes/authorRoutes')(nav);
 const loginRouter = require("./src/routes/loginRoutes")(nav);
 const signupRouter = require("./src/routes/signupRoutes")(nav);
+const adminRouter = require("./src/routes/adminRouter")(nav);
 
 app.use(express.static(__dirname+ '/public'));
 app.set('view engine','ejs');
@@ -30,6 +35,7 @@ app.use('/books',booksRouter);
 app.use('/authors',authorsRouter);
 app.use('/login',loginRouter);
 app.use('/signup',signupRouter);
+app.use('/admin',adminRouter);
 
 app.get('/',function(req,res){
     res.render("index",
